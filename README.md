@@ -15,16 +15,16 @@ You have to install the dependencies on the *sever/ folder*
     "socket.io": "^2.3.0"
   },
 ```
-## How to install them 🤷‍♂️🤷‍♀️ ?
+### How to install them 🤷‍♂️🤷‍♀️ ?
 Just type the folowing camands in the terminal ?????
 
 
-✅ npm install body-parser
-✅ npm install  ejs
-✅ npm install  express
-✅ npm install  express-session
-✅ npm install  express-socket.io-session
-✅  npm install  socket.io
+- ✅ npm install body-parser
+- ✅ npm install  ejs
+- ✅ npm install  express
+- ✅ npm install  express-session
+- ✅ npm install  express-socket.io-session
+- ✅  npm install  socket.io
 
 
 
