@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cairo|Roboto&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- If the id exists in the table it will display the full name on the title -->
+    <% 
+        if(exists)
+        {
+    %>
+            <title><%= user.fname %> <%= user.lname %></title>
+    <%
+        }
+        else
+        {
+    %>
+            <title>Wrong member</title>
+    <%
+        }
+    %>
+</head>
+
+<body>
+    <%
+        if(exists)
+        {
+    %>
+            <!-- If the user exists, display this block -->
+            <nav class="profile-nav">
+                <div class="profile-pic">
+
+                </div>
+                
+                <div class="main-infos">
+                    <%= user.fname %> <%= user.lname %>
+                    <div class="line-nav"></div>
+                    <p><%= user.dep %> department</p>
+                </div>
+            </nav>
+
+            <div class="page-container">
+
+            </div>
+    <%
+        }
+        else
+        {
+    %>
+            <!-- If the user doesn't exists, display this block -->
+    <%
+        }
+    %>
+</body>
+</html>
+
+<% 
+    if(exists)
+    {
+%>
+        <!-- If the user exists, use this styling -->
+        <style>
+            * 
+            {
+                margin: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+            }
+            
+            body 
+            {
+                overflow-x: hidden;
+            }
+
+            .page-container 
+            {
+                width: 100%;
+                height: 100vh;
+                background-image: url("/images/cmptwpp.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position-y: -150px;
+            }
+
+            .profile-nav 
+            {
+                width: 100%;
+                height: 170px;
+
+                background: rgb(240,188,8);
+                background: linear-gradient(90deg, rgba(240,188,8,1) 17%, rgba(255,110,2,1) 82%);
+                display: flex;
+                padding-left: 60px;
+            }
+
+            .profile-pic 
+            {
+                width: 135px;
+                height: 135px;
+                border-radius: 50%;
+                background-color: gray;
+                margin-top: 18px;
+            }
+
+            .main-infos
+            {
+                margin-top: 48px;
+                text-align: center;
+                margin-left: 15px;
+                font-family: 'Lobster', cursive;
+                font-size: 1.8em;
+            }
+
+            .main-infos p 
+            {
+                padding-left: 20px;
+                font-family: 'Lobster', cursive;
+            }
+
+            .line-nav 
+            {
+                width: 60%;
+                height: 1px;
+                background-color: black;
+                margin: auto;
+            }
+
+            @media only screen and (min-width: 1024px)
+            {
+                
+            }
+
+            @media only screen and (max-width: 1023.99px)
+            {
+                
+            }
+        </style>
+<%
+    }
+    else
+    {
+%>
+        <!-- If the user doesn't exists, use this styling -->
+        <style>
+        
+        </style>
+<%
+    }
+%>

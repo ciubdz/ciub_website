@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIUB Member Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Cairo|Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io.connect("http://localhost:3000");
+
+        $(document).ready(function()
+        {
+            $("#btnlog").on("click",function()
+            {
+                let infos = {
+                    mat: $("#mat").val(),
+                    pass: $("#pass").val()
+                };
+
+
+                $("input+p").empty();
+
+                $("#mat,#pass").css("border", "solid limegreen 4px");
+
+                socket.emit("login", infos);
+
+                socket.on('input-error', function(error)
+                {
+                    $(error.id).css("border","solid red 4px");
+                    $(error.id+"+p").text(error.message);
+                });
+            });
+        });
+
+        socket.on("redirect", function(path)
+        {
+            location.href = path;
+        });
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="form">
+            <img class="ciublogo" src="/images/ciublogo.jpg" alt="CIUB's logo...">
+            <br>
+            <span>CIUB's Members authentification</span>
+            <br><br>
+            <input type="text" class="inpt" id="mat" placeholder="Student ID number">
+            <p style="color: red;"></p>
+            <input type="password" class="inpt" id="pass" placeholder="Password...">
+            <p style="color: red;"></p>
+            <button id="btnlog">login</button>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+    * 
+    {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    body 
+    {
+        background-image: url("/images/loginwpp.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    .inpt 
+    {
+        width: 300px;
+        height: 50px;
+        border-radius: 25px;
+        border: solid black 2px;
+        outline: none;
+        text-align: center;
+        font-size: 1.5em;
+    }
+    .inpt:focus 
+    {
+        border: solid #F6871E 4px;
+    }
+    
+    #pass 
+    {
+        margin-top: 15px;
+    }
+
+    .login-container 
+    {
+        width: 580px;
+        text-align: center;
+    }
+
+    #btnlog
+    {
+        display: block;
+        margin: 15px auto;
+        width: 200px;
+        height: 50px;
+        border-radius: 25px;
+        cursor: pointer;
+        background-color: #F6871E;
+        border: none;
+        font-size: 1.5em;
+        transition: background-color 0.2s ease;
+        outline: none;
+    }
+
+    #btnlog:hover 
+    {
+        background-color: rgb(246, 160, 30);
+    }
+
+    .ciublogo
+    {
+        width: 140px;
+        border-radius: 50%;
+        margin-top: 130px;
+    }
+
+    span 
+    {
+        font-size: 2em;
+    }
+
+    @media only screen and (min-width: 1024px)
+    {
+        
+    }
+
+    @media only screen and (max-width: 1023.99px)
+    {
+        
+    }
+</style>
